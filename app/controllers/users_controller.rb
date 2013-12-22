@@ -73,6 +73,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = create_user
+    render :show
+  end
 
   private
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131220065109) do
+ActiveRecord::Schema.define(version: 20131222224505) do
 
   create_table "campuses", force: true do |t|
     t.integer  "school_id"
@@ -45,6 +45,25 @@ ActiveRecord::Schema.define(version: 20131220065109) do
   add_index "cohorts", ["start_date", "end_date"], name: "index_cohorts_on_start_date_and_end_date"
   add_index "cohorts", ["start_date"], name: "index_cohorts_on_start_date"
 
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.string   "website"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "companies", ["name"], name: "index_companies_on_name"
+
+  create_table "employments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "schools", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -62,7 +81,6 @@ ActiveRecord::Schema.define(version: 20131220065109) do
     t.string   "lname"
     t.string   "linkedin_token"
     t.string   "password_digest"
-    t.string   "session_token"
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id"
